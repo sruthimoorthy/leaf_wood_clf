@@ -54,7 +54,7 @@ def get_eigen_values_with_radius(nbr_arr, knn_arr, no_rand_pts):
             #print(np.shape(full_eigen_ratios))
         
 
-    data_with_eigen_features = np.column_stack((knn_arr[:,0:3], full_eigen_ratios, knn_arr[:,-1]))
+    data_with_eigen_features = np.column_stack((knn_arr[:,0:3], full_eigen_ratios))
 
     return data_with_eigen_features
 
