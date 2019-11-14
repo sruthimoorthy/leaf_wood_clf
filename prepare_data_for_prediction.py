@@ -52,5 +52,6 @@ def get_all_features(knn_arr, in_file):
         data_with_feat = generate_only_eigen_ratios_with_radius(knn_arr, knn_arr)
     print(data_with_feat.shape)
     np.savetxt(in_file+'_feat.txt', data_with_feat, fmt='%1.4f')
+    return data_with_feat
 
 
