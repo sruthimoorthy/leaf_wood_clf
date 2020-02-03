@@ -19,7 +19,7 @@ def separate_leaf_wood(in_file, model_file, out_file):
 
 
 
-in_file = '' #input file name
+in_file = '' #input file name. Expects a ".txt" file with xyz coordinates of points separated by space. The file can have more than just xyz values for points (eg. reflectance). However, the first three attributes for every point should be the xyz coordinates. 
 out_file = '' #output file name to save the predictions.
 model_file = 'leaf_wood_RF_final_model.sav' #download the model from the following link: https://www.dropbox.com/s/dpe8hzxorufv7qt/leaf_vs_wood_clf_model.sav?dl=0
 
