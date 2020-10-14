@@ -26,15 +26,16 @@ def generate_only_eigen_ratios_with_radius(nbr_pts, pt):
 
 
 def get_all_features(knn_arr, in_file):
-
+    % Change the number of points based on the memory available
+    no_pts_in_loop = 200000 
     data_with_feat = []
     pts_count = knn_arr.shape
     print(pts_count[0])
-    if pts_count[0] > 200000:
-        loop_count = int(math.ceil(pts_count[0]/200000))
+    if pts_count[0] > no_pts_in_loop:
+        loop_count = int(math.ceil(pts_count[0]/no_pts_in_loop))
         print(loop_count)
         start_idx = 0
-        end_idx = 200000
+        end_idx = no_pts_in_loop
         for j in range(0,loop_count):
             print(start_idx, end_idx)
             data_with_feat_temp = generate_only_eigen_ratios_with_radius(knn_arr, knn_arr[start_idx:end_idx,:])
@@ -42,12 +43,12 @@ def get_all_features(knn_arr, in_file):
                 data_with_feat = data_with_feat_temp
             else:
                 data_with_feat = np.row_stack((data_with_feat, data_with_feat_temp))
-            if pts_count[0] < end_idx + 200000:
+            if pts_count[0] < end_idx + no_pts_in_loop:
                 start_idx = end_idx
                 end_idx = pts_count[0]
             else:
                 start_idx = end_idx
-                end_idx = end_idx + 200000
+                end_idx = end_idx + no_pts_in_loop
     else:
         data_with_feat = generate_only_eigen_ratios_with_radius(knn_arr, knn_arr)
     print(data_with_feat.shape)
